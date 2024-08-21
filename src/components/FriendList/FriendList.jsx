@@ -1,51 +1,56 @@
-import React from "react";
+
 import PropTypes from "prop-types";
 import styles from "./FriendList.module.scss";
 
 const FriendList = ({ friends }) => {
-  return (
-    <div className={styles.FriendListAll}>
-      <ul className={styles.friendList}>
-        {friends.map(({ avatar, name, isOnline, id }) => (
-          <FriendListItem
-            key={id}
-            avatar={avatar}
-            name={name}
-            isOnline={isOnline}
-          />
-        ))}
-      </ul>
-    </div>
-  );
+	return (
+		<div className={styles.FriendListAll}>
+			<ul className={styles.friendList}>
+				{friends.map(({ avatar, name, isOnline, id }) => (
+					<FriendListItem
+						key={id}
+						avatar={avatar}
+						name={name}
+						isOnline={isOnline}
+					/>
+				))}
+			</ul>
+		</div>
+	);
 };
 
 FriendList.propTypes = {
-  friends: PropTypes.arrayOf(
-    PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      isOnline: PropTypes.bool.isRequired,
-      id: PropTypes.number.isRequired,
-    })
-  ).isRequired,
+	friends: PropTypes.arrayOf(
+		PropTypes.shape({
+			avatar: PropTypes.string.isRequired,
+			name: PropTypes.string.isRequired,
+			isOnline: PropTypes.bool.isRequired,
+			id: PropTypes.number.isRequired,
+		})
+	).isRequired,
 };
 
 const FriendListItem = ({ avatar, name, isOnline }) => {
-  return (
-    <li className={styles.item}>
-      <img className={styles.avatar} src={avatar} alt="User avatar" width="48" />
-      <p className={styles.name}>{name}</p>
-      <p className={isOnline ? styles.onlineText : styles.offlineText}>
-        {isOnline ? "Online" : "Offline"}
-      </p>
-    </li>
-  );
+	return (
+		<li className={styles.item}>
+			<img
+				className={styles.avatar}
+				src={avatar}
+				alt="User avatar"
+				width="48"
+			/>
+			<p className={styles.name}>{name}</p>
+			<p className={isOnline ? styles.onlineText : styles.offlineText}>
+				{isOnline ? "Online" : "Offline"}
+			</p>
+		</li>
+	);
 };
 
 FriendListItem.propTypes = {
-  avatar: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  isOnline: PropTypes.bool.isRequired,
+	avatar: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	isOnline: PropTypes.bool.isRequired,
 };
 
 export default FriendList;
